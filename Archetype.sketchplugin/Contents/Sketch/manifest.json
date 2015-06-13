@@ -1,0 +1,28 @@
+{
+	"name": "Archetype",
+	"description": "A Sketch plugin demo for Responsive Design",
+	"author": "Matt Curtis",
+	"homepage": "http://github.com/placeholder/Archetype",
+	"version": 1.0,
+
+	"identifier": "com.example.sketch.shape-plugins",
+	"updateURL": "http://raw.github.com/placeholder/Archetype/manifest.json",
+	"compatibleVersion": 3,
+	"bundleVersion": 1,
+
+	"commands": [
+			{
+				"name": "Run Archetype Demo",
+				"identifier": "archetype",
+				"shortcut": "cmd shift a",
+				"script": "dynamicCommands.js",
+				"handler": "command_demo"
+			}
+	],
+
+	"menu": [
+		{
+			"items": [ "archetype" ]
+		}
+	]
+}

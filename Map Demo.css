@@ -1,0 +1,94 @@
+.map {
+	position: fixed;
+	top: 50%; left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+}
+
+/* Input Field */
+
+.input-field {
+	position: fixed;
+	top: 20px; right: 20px; left: 20px;
+  
+  	padding: 0 20px;
+
+  	max-width: 640px;
+}
+
+.input-field .bg {
+	position: absolute;
+	top: 0; bottom: 0; right: 0; left: 0;
+}
+
+.input-field > * {
+	vertical-align: top;
+}
+
+.input-field .menu-icon {
+ 	display: inline-block;
+
+  	position: relative;
+  	top: 50%;
+  	-webkit-transform: translateY(-50%);
+}
+
+.input-field .logo {
+  	display: inline-block;
+ 	margin-left: 20px;
+ 	margin-top: 2px;
+
+ 	position: relative;
+  	top: 50%;
+  	-webkit-transform: translateY(-50%);
+}
+
+/* Footer */
+
+.footer {
+	position: fixed;
+	bottom: 0; right: 0; left: 0;
+  
+  	padding: 25px 20px 0 20px;
+}
+
+.footer .bg {
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
+}
+
+.footer .location-header {
+	display: block;
+}
+
+.footer .location-subtext {
+	display: block;
+
+	margin-top: 5px;
+}
+
+/*	Circle Buttons */
+
+.circle-btns {
+	position: fixed;
+	right: 20px; bottom: 10%;
+}
+
+.circle-btn {
+	position: relative;
+}
+
+.circle-btn .bg {
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
+}
+
+.circle-btn .icon {
+	position: absolute;
+	top: 50%; left: 50%;
+
+	-webkit-transform: translate(-50%, -50%);
+}
+
+.location-btn {
+	margin-top: 10px;
+}

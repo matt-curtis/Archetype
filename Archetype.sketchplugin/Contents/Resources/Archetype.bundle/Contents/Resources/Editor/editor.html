@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<link rel="stylesheet" href="codemirror.css" />
+
+		<script type="text/javascript" src="codemirror.js"></script>
+		<script type="text/javascript" src="css.js"></script>
+
+		<style>
+			body, html { padding: 0; margin: 0; width: 100%; height: 100%; }
+			body { border: 1px solid #BEBEBE; box-sizing: border-box; }
+			.CodeMirror { height: 100%; width: 100%; }
+		</style>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var options = { lineNumbers: true, autofocus: true };
+			var myCodeMirror = CodeMirror(document.body, options);
+
+			var getValue = function(){
+				return myCodeMirror.getValue();
+			};
+
+			var setValue = function(value){
+				myCodeMirror.setValue(value);
+			};
+
+			if(initialValue) setValue(initialValue);
+		</script>
+	</body>
+</html>

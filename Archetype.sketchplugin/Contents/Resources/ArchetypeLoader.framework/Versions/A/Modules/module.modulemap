@@ -1,0 +1,6 @@
+framework module ArchetypeLoader {
+  umbrella header "ArchetypeLoader.h"
+
+  export *
+  module * { export * }
+}
