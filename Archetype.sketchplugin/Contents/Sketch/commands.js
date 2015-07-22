@@ -6,9 +6,11 @@
 
 var global = this;
 
-var createCommand = function(commandName, func){
+var createCommand = function(commandName, functionToCall){
 	var dynFunc = function(ctx){
-		setup(ctx); func(ctx);
+		$.context = ctx;
+
+		functionToCall(ctx);
 	};
 
 	global["command_"+commandName] = dynFunc;
@@ -24,7 +26,7 @@ var createCommand = function(commandName, func){
 createCommand("demo", function(ctx){
 	var template = buildDOMTemplateFromCurrentArtboard();
 
-	var artboardFrame = getSelectedArtboard().frame();
+	var artboardFrame = $.artboard.frame();
 	var size = NSMakeSize(artboardFrame.width(), artboardFrame.height());
 
 	[[MCArchetypePlugin plugin] demo:template artboardSize:size showWebDebugWindow:false callback:function(frames){

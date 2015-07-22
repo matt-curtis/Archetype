@@ -2,11 +2,11 @@
 	"name": "Archetype",
 	"description": "A Sketch plugin demo for Responsive Design",
 	"author": "Matt Curtis",
-	"homepage": "http://github.com/placeholder/Archetype",
+	"homepage": "https://github.com/matt-curtis/Archetype",
 	"version": 1.0,
 
-	"identifier": "com.example.sketch.shape-plugins",
-	"updateURL": "http://raw.github.com/placeholder/Archetype/manifest.json",
+	"identifier": "com.matt-curtis.sketch.archetype",
+	"updateURL": "https://raw.githubusercontent.com/matt-curtis/Archetype/master/Archetype.sketchplugin/Contents/Sketch/manifest.json",
 	"compatibleVersion": 3,
 	"bundleVersion": 1,
 

@@ -1,4 +1,4 @@
-@import 'shared.js'
+@import 'SketchLibrary.js'
 
 //	------------
 //	INITIALIZERS
@@ -24,75 +24,6 @@ coscript.shouldKeepAround = true;
 
 	[MCArchetypeLoader load:bundlePath];
 })();
-
-var make$ = function(ctx){
-	var doc = ctx.document;
-
-	$ = function(layer){
-		var className = layer.class()+"";
-		var layerFrame = layer.frame();
-
-		var isGroup = (className == "MSLayerGroup");
-		var isArtboard = (className == "MSArtboardGroup");
-		var isText = (className == "MSTextLayer");
-
-		var canHaveLayers = (layer.layers != null);
-
-		var setFrame = function(){
-			var args = arguments;
-
-			if(args.length == 1 && typeof args[0] == "object"){
-				var frame = args[0];
-
-				for(var prop in frame){
-					layerFrame[prop] = frame[prop];
-				}
-			} else if(args.length > 0){
-				var order = ["x", "y", "width", "height"];
-
-				for(var i in args){
-					var prop = order[i];
-					layerFrame[prop] = Number(args[i]);
-				}
-			}
-		};
-
-		var obj = {
-			className: className,
-			layer: layer,
-			frame: layerFrame,
-			setFrame: setFrame,
-
-			isGroup: isGroup,
-			isArtboard: isArtboard,
-			isText: isText,
-
-			canHaveLayers: canHaveLayers
-		};
-
-		return obj;
-	};
-
-	$.pluginName = "Archetype";
-
-	$.scriptPath = ctx.scriptPath;
-	$.scriptFolderPath = $.scriptPath.toNSString().stringByDeletingLastPathComponent()+"";
-	$.resourcesPath = $.scriptFolderPath.toNSString().stringByDeletingLastPathComponent()+"/Resources";
-	
-	$.doc = doc;
-	$.page = doc.currentPage();
-	$.artboards = $.page.artboards();
-	$.selection = ctx.selection;
-	$.command = ctx.command;
-
-	$.artboard = getSelectedArtboard();
-
-	return $;
-};
-
-var setup = function(ctx){
-	make$(ctx);
-};
 
 
 //	--------------------
@@ -128,7 +59,7 @@ var buildDOMTemplateFromArtboard = function(artboard){
 };
 
 var buildDOMTemplateFromCurrentArtboard = function(){
-	var artboard = getSelectedArtboard();
+	var artboard = $.artboard;
 
 	if(artboard) return buildDOMTemplateFromArtboard(artboard);
 
