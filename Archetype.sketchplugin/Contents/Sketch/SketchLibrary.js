@@ -1,5 +1,5 @@
 //
-//  SketchLib.js
+//  SketchLibrary.js
 //
 //  Created by Matt Curtis
 //  Copyright (c) 2015. All rights reserved.
@@ -132,6 +132,7 @@
 
 		this.setFrame = function(){
 			var args = arguments;
+			var layerFrame = layer.frame();
 
 			if(args.length == 1 && typeof args[0] == "object"){
 				var frame = args[0];
@@ -160,7 +161,15 @@
 	var js = core.js = {};
 
 	js.execute = function(js, basePath){
-		[coscript executeString:js baseURL:[NSURL fileURLWithPath:basePath]];
+		var baseURL;
+
+		if(!basePath){
+			baseURL = coscript.env().scriptURL;
+		} else {
+			baseURL = [NSURL fileURLWithPath:basePath];
+		}
+
+		[coscript executeString:js baseURL:baseURL];
 	};
 
 	js.executeFile = function(filePath){
@@ -169,9 +178,7 @@
 		var jsPath = scriptPath.stringByDeletingLastPathComponent()+"/commands.js";
 		var script = [NSString stringWithContentsOfFile:jsPath encoding:NSUTF8StringEncoding error:nil];
 
-		var mainScriptURL = [NSURL fileURLWithPath:jsPath];
-
-		js.execute(script, basePath);
+		js.execute(script, jsPath);
 	};
 
 	//	Paths

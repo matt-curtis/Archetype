@@ -88,5 +88,5 @@ var adjustCurrentArtboardUsingFrames = function(frames){
 
 	adjustFrames($.artboard.layers(), frames, { x: 0, y: 0 });
 
-	refresh();
+	$.refresh();
 };
