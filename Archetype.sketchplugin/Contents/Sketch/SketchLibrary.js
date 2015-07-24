@@ -196,11 +196,17 @@
 		}
 	});
 
-	createProp(paths, "resourcesPath", {
-		get: function(){
-			return paths.scriptFolderPath.toNSString().stringByDeletingLastPathComponent()+"/Resources";
+	paths.pluginPath = (function(){
+		var NSScriptPath = paths.scriptPath.toNSString();
+
+		while(NSScriptPath.lastPathComponent().pathExtension() != "sketchplugin"){
+			NSScriptPath = NSScriptPath.stringByDeletingLastPathComponent();
 		}
-	});
+
+		return NSScriptPath+"";
+	})();
+
+	paths.resourcesPath = paths.pluginPath+"/Contents/Resources";
 
 	paths.joinPathComponents = function(){
 		var args = arguments;
@@ -322,16 +328,29 @@
 
 	//	Runtime
 
-	core.loadFramework = function(frameworkName, directory){
+	var runtime = core.runtime = {};
+
+	runtime.loadFramework = function(frameworkName, directory){
 		var mocha = Mocha.sharedRuntime();
 
-		log(frameworkName);
-		log(directory);
-
-		[mocha loadFrameworkWithName:frameworkName inDirectory:directory];
+		return [mocha loadFrameworkWithName:frameworkName inDirectory:directory];
 	};
 
-	core.classExists = function(className){
+	runtime.loadBundle = function(bundlePath){
+		//	Load our loader framework if needed
+
+		var resourcesPath = paths.resourcesPath;
+
+		if(runtime.classExists("MCSketchBundleLoader") == false){
+			runtime.loadFramework("MCSketchBundleLoaderFramework", resourcesPath);
+		}
+
+		//	Load our bundle
+
+		return [MCSketchBundleLoader load:bundlePath];
+	};
+
+	runtime.classExists = function(className){
 		return NSClassFromString(className) != null;
 	};
 

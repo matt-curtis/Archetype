@@ -6,21 +6,7 @@
 
 coscript.shouldKeepAround = true;
 
-(function loadFrameworkAndBundle(){
-	//	Load our loader framework if needed
-
-	var resourcesPath = $.paths.resourcesPath;
-
-	if($.classExists("MCSketchBundleLoader") == false){
-		$.loadFramework("MCSketchBundleLoaderFramework", resourcesPath);
-	}
-
-	//	Load our bundle
-
-	var bundlePath = resourcesPath+"/Archetype.bundle";
-
-	[MCSketchBundleLoader load:bundlePath];
-})();
+$.runtime.loadBundle($.paths.resourcesPath+"/Archetype.bundle");
 
 
 //	--------------------
