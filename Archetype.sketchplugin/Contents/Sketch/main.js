@@ -7,22 +7,19 @@
 coscript.shouldKeepAround = true;
 
 (function loadFrameworkAndBundle(){
-	var scriptPath = coscript.env().scriptURL.path();
-	var resourcesPath = scriptPath.stringByDeletingLastPathComponent().stringByDeletingLastPathComponent()+"/Resources";
+	//	Load our loader framework if needed
 
-	var mocha = Mocha.sharedRuntime();
+	var resourcesPath = $.paths.resourcesPath;
 
-	if(NSClassFromString("MCArchetypeLoader") == null){
-		//	Load our loader framework
-
-		[mocha loadFrameworkWithName:"ArchetypeLoader" inDirectory:resourcesPath];
+	if($.classExists("MCSketchBundleLoader") == false){
+		$.loadFramework("MCSketchBundleLoaderFramework", resourcesPath);
 	}
 
 	//	Load our bundle
 
 	var bundlePath = resourcesPath+"/Archetype.bundle";
 
-	[MCArchetypeLoader load:bundlePath];
+	[MCSketchBundleLoader load:bundlePath];
 })();
 
 

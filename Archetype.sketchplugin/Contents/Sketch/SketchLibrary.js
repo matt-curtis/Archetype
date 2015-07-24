@@ -8,7 +8,6 @@
 (function(){
 	var global = this;
 
-
 	//
 	//	EXTEND DEFAULT OBJECTS
 	//	----------------------
@@ -319,6 +318,21 @@
 		alert.informativeText = message;
 		
 		alert.runModal();
+	};
+
+	//	Runtime
+
+	core.loadFramework = function(frameworkName, directory){
+		var mocha = Mocha.sharedRuntime();
+
+		log(frameworkName);
+		log(directory);
+
+		[mocha loadFrameworkWithName:frameworkName inDirectory:directory];
+	};
+
+	core.classExists = function(className){
+		return NSClassFromString(className) != null;
 	};
 
 })();
