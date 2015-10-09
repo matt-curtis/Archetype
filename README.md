@@ -10,7 +10,7 @@
 
 Archetype works by internally converting your Sketch layer hierarchy to a DOM equivalent. That generated DOM looks something like this:
 
-```javascript
+```html
 <html>
 	<head>
 		<style>
